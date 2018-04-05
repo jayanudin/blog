@@ -5,5 +5,6 @@ step for install simple blog with Laravel
 3. composer install
 4. set Database on .env
 5. php artisan migrate
-6. php artisan serve
-7. run http://127.0.0.1:8000/ or http://localhost:8000/
+6. php artisan db:seed
+7. php artisan serve
+8. run http://127.0.0.1:8000/ or http://localhost:8000/
