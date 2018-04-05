@@ -130,6 +130,16 @@
 
     <script src="{{ asset('js/custom.min.js') }}"></script>
 
+    <script>
+        $('a.delete').on('click', function() {
+            var choice = confirm('Are You Sure?');
+            if(choice === true) {
+                return true;
+            }
+            return false;
+        });
+    </script>
+
 </body>
 
 </html>

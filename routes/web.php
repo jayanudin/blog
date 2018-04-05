@@ -13,24 +13,19 @@
 
 //fronend
 
-Route::get('/blog/home', [
+Route::get('/', [
     'uses' => 'BlogController@index',
     'as' => 'home'
 ]);
 
-Route::get('/blog/detail/{slug}', [
+Route::get('/detail/{slug}', [
     'uses' => 'BlogController@detail',
     'as' => 'blog.detail'
 ]);
 
 
-//dashboard 
 
-Route::get('/', [
-    'uses' => 'DashboardController@index',
-    'as' => 'dashboard',
-    'middleware' => 'auth'
-]);
+//dashboard 
 
 Route::get('/dashboard', [
     'uses' => 'DashboardController@index',
