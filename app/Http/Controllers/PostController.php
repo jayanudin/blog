@@ -157,9 +157,14 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
-        $post->delete();
+        try {
+            $post = Post::find($id);
+            $post->delete();
 
-        return redirect('post')->with('message', 'success delete article');
+            return redirect('post')->with('message', 'success delete article');
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            var_dump($e->errorInfo);
+        }
     }
 }

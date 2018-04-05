@@ -38,7 +38,7 @@
                                     <tr>
                                         <td>{{ $data->title }}</td>
                                         <td><img src="{{ $data->image }}" width="100"></td>
-                                        <td>{{ $data->content }}</td>
+                                        <td>{{ substr($data->content, 0, 100) }} ...</td>
                                         <td>{{ $data->slug }}</td>
                                         <td>{{ $data->category->title }}</td>
                                         <td>

@@ -119,9 +119,16 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category  = Category::find($id);
-        $category->delete();
+        try {
 
-        return redirect('category')->with('message', 'success delete category');
+            $category  = Category::find($id);
+            $category->delete();
+
+            return redirect('category')->with('message', 'success delete category');
+
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            return redirect('category')->with('error', 'filed delete category');
+        }
     }
 }
