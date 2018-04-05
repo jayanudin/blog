@@ -11,6 +11,18 @@
 |
 */
 
+//fronend
+
+Route::get('/blog/home', [
+    'uses' => 'BlogController@index',
+    'as' => 'home'
+]);
+
+Route::get('/blog/detail/{slug}', [
+    'uses' => 'BlogController@detail',
+    'as' => 'blog.detail'
+]);
+
 
 //dashboard 
 

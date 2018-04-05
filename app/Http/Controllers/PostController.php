@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
@@ -53,20 +54,22 @@ class PostController extends Controller
             $content = $request['content'];
             $slug = $request['slug'];
             $category_id = $request['category_id'];
+            $user_id = $request['user_id'];
 
             $file = $request->file('image');
             $fileName = $file->getClientOriginalName();
             $path = 'uploads/';
             $file = $file->move($path, $fileName);
 
-            
+            $userid = Auth::user()->id;
             
             $post = new Post;
             $post->title = $title;
             $post->image = $file;
             $post->content = $content;
-            $post->slug = str_replace(' ', '-', $slug);
+            $post->slug = str_replace(' ', '-', strtolower($slug));
             $post->category_id = $category_id;
+            $post->user_id = $userid;
             $post->save();
 
             return redirect('post')->with('message', 'success create article');
@@ -137,7 +140,7 @@ class PostController extends Controller
             $post->title = $title;
             $post->image = $file;
             $post->content = $content;
-            $post->slug = str_replace(' ', '-', $slug);
+            $post->slug = str_replace(' ', '-', strtolower($slug));
             $post->category_id = $category_id;
             $post->save();
 
@@ -164,7 +167,7 @@ class PostController extends Controller
             return redirect('post')->with('message', 'success delete article');
 
         } catch (\Illuminate\Database\QueryException $e) {
-            var_dump($e->errorInfo);
+            echo 'Fail Delete Article: ',  $e->getMessage(), "\n";
         }
     }
 }
