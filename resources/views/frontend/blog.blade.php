@@ -26,7 +26,7 @@
     
                     @foreach($post as $key => $data)
                         <div class="post-preview">
-                            <a href="{{ url('blog/detail/' . $data->slug) }}">
+                            <a href="{{ url('detail/' . $data->slug) }}">
                                 <h2 class="post-title">{{ $data->title }}</h2>
                                 <h3 class="post-subtitle">
                                   {{ $data->category->title }}
