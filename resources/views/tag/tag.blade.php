@@ -2,6 +2,16 @@
 
 
 @section('content')
+
+    <div class="row page-titles" style="background: transparent; box-shadow: none;">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary">Tag</h3> 
+        </div>
+        <div class="col-md-7 align-self-center">
+           {{ Breadcrumbs::render('tag', $tag) }}
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card">

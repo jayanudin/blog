@@ -2,6 +2,14 @@
 
 
 @section('content')
+    <div class="row page-titles" style="background: transparent; box-shadow: none;">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary">Dashboard</h3> 
+        </div>
+        <div class="col-md-7 align-self-center">
+           {{ Breadcrumbs::render('dashboard') }}
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-3">
             <div class="card p-30">
