@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Post;
 use App\Category;
+use App\Tag;
+use App\PostTag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -28,8 +30,19 @@ class PostController extends Controller
      */
     public function create(Category $category)
     {
+        
+
         $categories = $category->all();
         return view('post.add')->with(['categories' => $categories]);
+    }
+
+    public function loadTags()
+    {
+        $tag  = Tag::all();
+
+        $json = json_encode($tag);
+
+        echo $json;
     }
 
     /**
@@ -72,6 +85,8 @@ class PostController extends Controller
             $post->user_id = $userid;
             $post->save();
 
+            $post->tags()->sync($request->tags, false);
+
             return redirect('post')->with('message', 'success create article');
 
 
@@ -102,7 +117,21 @@ class PostController extends Controller
 
         $post = Post::find($id);
         $categories = Category::all();
-        return view('post.edit', ['post' => $post, 'categories' => $categories]);
+        // $tags = Tag::all();
+        // $tagslist = array();
+        // foreach ($tags as $tag) {
+        //     $tagslist[$tag->id] = $tag->name;
+        // }
+        // return view('post.edit', ['post' => $post, 'categories' => $categories, 'tagslist' => $tagslist]);
+
+        $tags = Tag::all();
+        $tags2 = array();
+        foreach ($tags as $tag) {
+            $tags2[$tag->id] = $tag->name;
+        }
+
+          // return the view and pass in the var we previously created
+        return view('post.edit')->withPost($post)->withCategories($categories)->withTags($tags2);
     }
 
     /**
@@ -143,6 +172,8 @@ class PostController extends Controller
             $post->slug = str_replace(' ', '-', strtolower($slug));
             $post->category_id = $category_id;
             $post->save();
+
+            $post->tags()->sync($request->tags, false);
 
             return redirect('post')->with('message', 'success update article');
 

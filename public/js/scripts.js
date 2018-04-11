@@ -128,4 +128,27 @@ $(function() {
         $('a[data-action="close"]').on("click", function() {
             $(this).closest(".card").removeClass().slideUp("fast");
         });
+
+        $.getJSON('/post/tags', function(response) {
+
+            var arr = [];
+
+            $.each(response, function(index, val) {
+                arr.push({value: val.id, label: val.name});
+            })
+
+            console.log(arr);
+
+            $('#tags').selectize({
+                maxItems: null,
+                valueField: 'value',
+                labelField: 'label',
+                searchField: 'label',
+                options: arr,
+                create: false
+            });
+        })
+
+        
+
 });

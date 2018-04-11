@@ -32,6 +32,10 @@
                                 <input type="text" class="form-control" name="slug">
                                 <small class="text-danger">{{ $errors->first('slug') }}</small>
                             </div>
+                            <div class="form-group">
+                                <label class="form-group">Tag</label>
+                                <select id="tags" name="tags[]" multiple placeholder="Pick a tool..."></select>
+                            </div>  
                             <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
                                 <label>Category</label>
                                 <select name="category_id" class="form-control">

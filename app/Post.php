@@ -19,10 +19,21 @@ class Post extends Model
         return $this->belongsTo('App\Category');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag', 'post_tag', 'post_id');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
 
     /**
      * Return the sluggable configuration array for this model.

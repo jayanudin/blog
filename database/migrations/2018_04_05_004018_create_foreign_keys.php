@@ -21,6 +21,7 @@ class CreateForeignKeys extends Migration
             $table->foreign('user_id')->references('id')->on('users')
                         ->onDelete('restrict')
                         ->onUpdate('restrict');
+
         });
     }
 
@@ -35,5 +36,6 @@ class CreateForeignKeys extends Migration
             $table->dropForeign('posts_category_id_foreign');
             $table->dropForeign('posts_user_id_foreign');
         });
+
     }
 }
